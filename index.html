@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário Simples com css modificado</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Permanent+Marker&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&family=Yarndings+12&display=swap" rel="stylesheet">
+       
+       <style>
+        body {
+            text-align: center;
+            font-family: "Quantico", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            background-color: #21003B;
+            color: #F587FF;
+            margin: 20px;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 500px;
+        }
+
+        form {
+            text-align: left;         
+            display: flex;
+            flex-direction: column;
+            display: grid;
+            gap: 10px;
+        }
+
+        input, button {
+            justify-content: center;
+            text-align: center;
+            padding: 9px;
+            background-color: #FCC488;
+            color: #42008A;
+            border: 20px groove #7337AB;
+            border-radius: 20px;
+            box-shadow: 0 20px 25px #6BED70;
+        }
+
+        input:hover, button:hover {
+            transition: 1s;
+            background-color: #E39C4B;
+            color: #42008A;
+            border: 20px ridge #7337AB;
+            box-shadow: 0 20px 25px #4CA14F;
+        }
+
+        #resultado {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: #EAB8F2;
+        }
+
+        .card {
+            background-color: #5D0069;
+            padding: 40px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <h1>Formulário de Cadastro</h1>
+
+        <form id="formulario" class = "card">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required>
+
+            <label for="nascimento">Data de nascimento:</label>
+            <input type="date" id="nascimento" required>
+
+            <label for="cor">Cor preferida:</label>
+            <input type="color" id="cor" value="#000000">
+
+            <button type="submit">Enviar</button>
+        </form>
+
+        <section>
+            <h2>Dados preenchidos</h2>
+            <div id="resultado"></div>
+        </section>
+    </main>
+
+    <script>
+        const formulario = document.getElementById("formulario");
+        const resultado = document.getElementById("resultado");
+
+        formulario.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById("nome").value;
+            const nascimento = document.getElementById("nascimento").value;
+            const cor = document.getElementById("cor").value;
+
+            resultado.innerHTML = "";
+
+            const pNome = document.createElement("p");
+            pNome.textContent = "Nome: " + nome;
+
+            const pNascimento = document.createElement("p");
+            pNascimento.textContent = "Nascimento: " + nascimento;
+
+            const pCor = document.createElement("p");
+            pCor.textContent = "Cor preferida: " + cor;
+
+            const amostraCor = document.createElement("div");
+            amostraCor.style.backgroundColor = cor;
+            amostraCor.style.width = "100px";
+            amostraCor.style.height = "40px";
+            amostraCor.style.border = "1px solid black";
+
+            resultado.appendChild(pNome);
+            resultado.appendChild(pNascimento);
+            resultado.appendChild(pCor);
+            resultado.appendChild(amostraCor);
+        });
+    </script>
+
+</body>
+</html>
